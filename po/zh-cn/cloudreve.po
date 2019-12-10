@@ -1,0 +1,2 @@
+msgid "cloudreve"
+msgstr "雷韦云"
