@@ -10,11 +10,11 @@ local dsp = require "luci.dispatcher"
 <script type="text/javascript">//<![CDATA[
   var msgInfo;
   var tokenStr = '<%=token%>';
-  var clickToDownloadText = '<%:点击下载%>';
-  var inProgressText = '<%:正在下载...%>';
-  var downloadInProgressNotice = '<%:正在下载，你确认要关闭吗？%>';
-  var downloadSuccessText = '<%:下载成功.%>';
-  var unexpectedErrorText = '<%:意外错误.%>';
+  var clickToDownloadText = '<%:Click to Download%>';
+  var inProgressText = '<%:Downloading...%>';
+  var downloadInProgressNotice = '<%:Confirm to exit?%>';
+  var downloadSuccessText = '<%:Download success.%>';
+  var unexpectedErrorText = '<%:Exception eror.%>';
   function addPageNotice() {
     window.onbeforeunload = function(e) {
       e.returnValue = downloadInProgressNotice;
@@ -81,7 +81,7 @@ local dsp = require "luci.dispatcher"
       if (ckeckDetailElm) {
         var urlNode = '';
         if (json.version) {
-          urlNode = '<em style="color:red;">最新版本号：' + json.version + '</em>';
+          urlNode = '<em style="color:red;">Latest version:' + json.version + '</em>';
           if (json.url && json.url.html) {
             urlNode = '<a href="' + json.url.html + '" target="_blank">' + urlNode + '</a>';
           }
@@ -105,7 +105,7 @@ local dsp = require "luci.dispatcher"
         removePageNotice();
         onRequestError(btn, json.error);
       } else {
-        btn.value = '<%:解压中...%>';
+        btn.value = '<%:Decompressing...%>';
         // Extract file
         doAjaxGet(UpdateUrl, {
           token: tokenStr,
@@ -116,7 +116,7 @@ local dsp = require "luci.dispatcher"
             removePageNotice();
             onRequestError(btn, json.error);
           } else {
-            btn.value = '<%:移动中...%>';
+            btn.value = '<%:Moving files...%>';
             // Move file to target dir
             doAjaxGet(UpdateUrl, {
               token: tokenStr,
